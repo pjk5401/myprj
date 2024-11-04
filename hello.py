@@ -1,11 +1,14 @@
-from flask import Flask
+const http = require('http');
 
-app = Flask(__name__)
+const hostname = '0.0.0.0';
+const port = 15001;
 
-@app.route('/')
-def hello_world():
-    return 'Hello, World!'
+const server = http.createServer((req, res) => {
+  res.statusCode = 200;
+  res.setHeader('Content-Type', 'text/plain');
+  res.end('Hello, World!');
+});
 
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=15001)
-  
+server.listen(port, hostname, () => {
+  console.log(`Server running at http://${hostname}:${port}/`);
+});
